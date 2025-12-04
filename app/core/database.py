@@ -17,8 +17,15 @@ if not DATABASE_URL:
 if DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
 
-# SQLAlchemy engine (connect to PostgreSQL)
-engine = create_engine(DATABASE_URL)
+# SQLAlchemy engine (connect to PostgreSQL) with Render-safe settings
+engine = create_engine(
+    DATABASE_URL,
+    pool_pre_ping=True,      # Checks if connection is alive before using
+    pool_recycle=300,        # Recycle connections every 5 minutes
+    pool_size=5,             # Active connection pool
+    max_overflow=10          # Extra connections allowed
+)
+
 
 # SessionLocal will be used to interact with the DB
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
