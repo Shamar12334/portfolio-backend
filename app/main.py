@@ -64,4 +64,4 @@ def read_root():
 @limiter.exempt
 @app.head("/")
 def head_root():
-    return JSONResponse(status_code=200)
+    return JSONResponse(content={},status_code=200)
