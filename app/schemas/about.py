@@ -1,15 +1,18 @@
 from pydantic import BaseModel
+
 class AboutBase(BaseModel):
-    name: str 
+    name: str
     degree: str
-    bio:    str
-    profile_picture: bytes
+    bio: str
+    profile_picture_url: str | None = None  # replace bytes with URL
     years_of_experience: str
     resume_url: str
+
 class AboutCreate(AboutBase):
-    pass 
+    pass
+
 class About(AboutBase):
-    id:int
+    id: int
 
     class Config:
-        from_attributes= True
+        from_attributes = True

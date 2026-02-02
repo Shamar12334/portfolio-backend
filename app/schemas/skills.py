@@ -1,15 +1,14 @@
-from pydantic import BaseModel, field_serializer
-import base64
+from pydantic import BaseModel
 
 class SkillBase(BaseModel):
     skill_name: str
-    skill_image: bytes
+    skill_image_url: str | None = None
 
-    @field_serializer("skill_image")
-    def encode_image(self, image_bytes):
-        return base64.b64encode(image_bytes).decode()
+class SkillCreate(SkillBase):
+    pass
 
 class Skill(SkillBase):
     id: int
+
     class Config:
         from_attributes = True

@@ -1,21 +1,15 @@
-from pydantic import BaseModel,field_serializer
-import base64
+from pydantic import BaseModel
+
 class ProjectBase(BaseModel):
     title: str
     description: str
     github_url: str | None = None
     live_url: str | None = None
-    tech_stack: str | None= None
-    project_image: bytes | None = None
-
-    @field_serializer("project_image")
-    def encode_image(self, value: bytes):
-        if value is None:
-            return None
-        return base64.b64encode(value).decode()
+    tech_stack: str | None = None
+    project_image_url: str | None = None  # replace bytes with URL
 
 class Project(ProjectBase):
-    id : int
+    id: int
 
     class Config:
-        from_attributes=True
+        from_attributes = True

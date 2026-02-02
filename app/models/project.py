@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Text,LargeBinary
 from app.core.database import Base
 
+
 class Project(Base):
     __tablename__ = "projects"
 
@@ -10,4 +11,4 @@ class Project(Base):
     github_url = Column(String(300), nullable=True)
     live_url = Column(String(300), nullable=True)
     tech_stack = Column(String(300), nullable=True)
-    project_image = Column(LargeBinary, nullable=True)
+    project_image_url = Column(String(500), nullable=True) 
