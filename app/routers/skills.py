@@ -2,8 +2,8 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form
 from sqlalchemy.orm import Session
 import os
 from app.core.database import get_db
-from app.models.skill import Skill
-from app.schemas.skill import Skill as SkillSchema
+from app.models.skills import Skill
+from app.schemas.skills import Skill as SkillSchema
 
 router = APIRouter(
     prefix="/skills",
